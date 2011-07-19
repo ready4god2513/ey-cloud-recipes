@@ -1,4 +1,4 @@
-# require_recipe "mongodb"
+require_recipe "mongodb"
 
 #execute "testing" do
 #  command %Q{
