@@ -33,8 +33,22 @@ else
   
   if (@node[:instance_role] == 'util' && @node[:name].match(/mongodb/)) || (@node[:instance_role] == "solo" &&  @node[:mongo_utility_instances].length == 0)
     require_recipe "mongodb::install"
+    
+    ey_cloud_report "MongoDB" do
+      message "Installing mongodb"
+    end
+    
     require_recipe "mongodb::configure"
+    
+    ey_cloud_report "MongoDB" do
+      message "Configuring mongodb"
+    end
+    
     require_recipe "mongodb::start"
+    
+    ey_cloud_report "MongoDB" do
+      message "Starting mongodb"
+    end
     if @node[:mongo_replset]
       require_recipe "mongodb::replset"
     end
